@@ -1,0 +1,37 @@
+@model List<DigitalLibrary.Models.Book>
+
+<h2>Biblioteka Cyfrowa</h2>
+<form method="get" action="/Books/Search" class="mb-3">
+    <input type="text" name="query" class="form-control" placeholder="Szukaj książki lub autora..." />
+    <button type="submit" class="btn btn-primary mt-2">Szukaj</button>
+</form>
+<a class="btn btn-primary mb-3" href="/Books/Create">
+    Dodaj książkę
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Rok wydania</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author?.Name</td>
+                <td>@book.PublicationYear</td>
+
+                <td>
+                    <a class="btn btn-warning btn-sm" href="/Books/Edit/@book.Id">Edytuj</a>
+                    <a class="btn btn-danger btn-sm" href="/Books/Delete/@book.Id">Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,18 @@
+@model DigitalLibrary.Models.Book
+
+<h2>Usuń książkę</h2>
+
+<p>Czy na pewno chcesz usunąć tę książkę?</p>
+
+<ul>
+    <li><b>Tytuł:</b> @Model.Title</li>
+    <li><b>Autor:</b> @Model.Author</li>
+    <li><b>Rok:</b> @Model.PublicationYear</li>
+</ul>
+
+<form method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <button type="submit" class="btn btn-danger">Usuń</button>
+    <a href="/Books" class="btn btn-secondary">Anuluj</a>
+</form>

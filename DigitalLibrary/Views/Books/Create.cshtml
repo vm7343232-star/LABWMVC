@@ -1,0 +1,41 @@
+@model DigitalLibrary.Models.Book
+@{
+    var authors = ViewBag.Authors as List<DigitalLibrary.Models.Author>;
+}
+
+<h2>Dodaj książkę</h2>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label>Tytuł</label>
+        <input type="text" name="Title" value="@Model?.Title" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Autor</label>
+        <select name="AuthorId" class="form-control">
+            @if (authors != null)
+            {
+                foreach (var a in authors)
+                {
+                    <option value="@a.Id">@a.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Rok wydania</label>
+        <input type="number" name="PublicationYear" value="@Model?.PublicationYear" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Zapisz
+    </button>
+
+    <a href="/Books" class="btn btn-secondary">
+        Wróć
+    </a>
+
+</form>

@@ -1,0 +1,35 @@
+@model DigitalLibrary.Models.Book
+@{
+    var authors = ViewBag.Authors as List<DigitalLibrary.Models.Author>;
+}
+
+<h2>Edytuj książkę</h2>
+
+<form method="post">
+
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <div class="mb-2">
+        <label>Tytuł</label>
+        <input type="text" name="Title" value="@Model.Title" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Autor</label>
+        <select name="AuthorId" class="form-control">
+            @foreach (var a in authors)
+            {
+                <option value="@a.Id" selected="@(Model.AuthorId == a.Id)">
+                    @a.Name
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-2">
+        <label>Rok wydania</label>
+        <input type="number" name="PublicationYear" value="@Model.PublicationYear" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Zapisz zmiany</button>
+</form>
